@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@Service
 public interface UserService {
 
     List<UserEntity> test();
@@ -24,6 +23,7 @@ public interface UserService {
 
 }
 
+@Service
 class UserServiceImpl implements UserService {
 
     @Autowired

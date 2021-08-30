@@ -5,7 +5,6 @@ import MSGUserService.models.entities.UserEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-@Service
 public interface DtoMapper {
 
     UserEntity convertToEntity(UserDto userDto);
@@ -14,6 +13,7 @@ public interface DtoMapper {
 
 }
 
+@Service
 class DtoMapperImpl implements DtoMapper {
 
     private final ModelMapper mapper = new ModelMapper();

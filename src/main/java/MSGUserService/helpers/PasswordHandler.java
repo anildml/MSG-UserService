@@ -5,7 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
 public interface PasswordHandler {
 
     String hashNewPassword(String password);
@@ -14,6 +13,7 @@ public interface PasswordHandler {
 
 }
 
+@Service
 class PasswordHandlerImpl implements PasswordHandler {
 
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
