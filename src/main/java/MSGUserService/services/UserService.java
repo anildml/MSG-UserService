@@ -10,13 +10,7 @@ import MSGUserService.models.requests.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 public interface UserService {
-
-    List<UserEntity> test();
 
     String loginAndGetToken(LoginRequest loginRequest);
 
@@ -39,17 +33,12 @@ class UserServiceImpl implements UserService {
     @Autowired
     private DtoMapper dtoMapper;
 
-    public List<UserEntity> test() {
-        return StreamSupport
-                .stream(userDao.findAll().spliterator(), false)
-                .collect(Collectors.toList());
-    }
 
     @Override
     public String loginAndGetToken(LoginRequest loginRequest) {
-        UserEntity userEntity = userDao.findUserEntityByUserName(loginRequest.getUsername());
-        if (passwordHandler.doesPasswordsMatch(userEntity.getPasswordDigest(), loginRequest.getPassword())) {
-            return authHelper.buildTokenForUser(loginRequest);
+        UserDto userDto = dtoMapper.convertToUserDto(userDao.findUserEntityByUsername(loginRequest.getUsername()));
+        if (passwordHandler.doesPasswordsMatch(userDto.getPasswordDigest(), loginRequest.getPassword())) {
+            return authHelper.buildTokenForUser(userDto);
         }
         return null;
     }
