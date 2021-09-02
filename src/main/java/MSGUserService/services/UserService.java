@@ -6,6 +6,7 @@ import MSGUserService.helpers.DtoMapper;
 import MSGUserService.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
+import MSGUserService.models.requests.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public interface UserService {
 
     List<UserEntity> test();
 
-    String loginAndGetToken(UserDto userDto);
+    String loginAndGetToken(LoginRequest loginRequest);
 
     Boolean signUp(UserDto userDto);
 
@@ -45,10 +46,10 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String loginAndGetToken(UserDto userDto) {
-        UserEntity userEntity = userDao.findUserEntityByUserName(userDto.getUserName());
-        if (passwordHandler.doesPasswordsMatch(userEntity.getPasswordDigest(), userDto.getPassword())) {
-            return authHelper.buildTokenForUser(userDto);
+    public String loginAndGetToken(LoginRequest loginRequest) {
+        UserEntity userEntity = userDao.findUserEntityByUserName(loginRequest.getUsername());
+        if (passwordHandler.doesPasswordsMatch(userEntity.getPasswordDigest(), loginRequest.getPassword())) {
+            return authHelper.buildTokenForUser(loginRequest);
         }
         return null;
     }

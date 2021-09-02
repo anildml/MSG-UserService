@@ -1,6 +1,7 @@
 package MSGUserService.helpers;
 
 import MSGUserService.models.dtos.UserDto;
+import MSGUserService.models.requests.LoginRequest;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ public interface AuthHelper {
 
     String getUsernameFromToken(String token);
 
-    String buildTokenForUser(UserDto userDto);
+    String buildTokenForUser(LoginRequest loginRequest);
 
 }
 
@@ -29,7 +30,7 @@ class AuthHelperImpl implements AuthHelper {
     }
 
     @Override
-    public String buildTokenForUser(UserDto userDto) {
+    public String buildTokenForUser(LoginRequest loginRequest) {
         return null;
     }
 }
