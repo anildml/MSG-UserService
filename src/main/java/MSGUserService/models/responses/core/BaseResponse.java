@@ -1,4 +1,4 @@
-package MSGUserService.models.reponses.core;
+package MSGUserService.models.responses.core;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

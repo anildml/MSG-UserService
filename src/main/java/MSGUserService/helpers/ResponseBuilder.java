@@ -1,7 +1,7 @@
 package MSGUserService.helpers;
 
-import MSGUserService.models.reponses.core.AppError;
-import MSGUserService.models.reponses.core.BaseResponse;
+import MSGUserService.models.responses.core.AppError;
+import MSGUserService.models.responses.core.BaseResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
