@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao extends CrudRepository<UserEntity, Long> {
 
-    UserEntity findUserEntityByUserName(String username);
+    UserEntity findUserEntityByUsername(String username);
 
 }
