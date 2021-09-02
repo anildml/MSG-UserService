@@ -15,7 +15,7 @@ public class UserDto {
 
     private String username;
 
-    private int userCode;
+    private long userCode;
 
     private String email;
 

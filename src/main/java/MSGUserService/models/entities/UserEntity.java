@@ -24,7 +24,7 @@ public class UserEntity {
     private String username;
 
     @Column(name = "user_code")
-    private int userCode;
+    private long userCode;
 
     @Column(name = "email")
     private String email;
