@@ -1,16 +1,22 @@
 package MSGUserService.helpers;
 
 import MSGUserService.models.dtos.UserDto;
-import MSGUserService.models.requests.LoginRequest;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.DefaultJwtBuilder;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Calendar;
+import java.util.Date;
 
 public interface AuthHelper {
 
     String getUsernameFromToken(String token);
 
-    String buildTokenForUser(LoginRequest loginRequest);
+    String buildTokenForUser(UserDto userDto);
 
 }
 
@@ -18,6 +24,8 @@ public interface AuthHelper {
 class AuthHelperImpl implements AuthHelper {
 
     private final String secret = "test";
+
+    private final int validityDuration = 3; // 3 minutes
 
     @Override
     public String getUsernameFromToken(String token) {
@@ -30,7 +38,25 @@ class AuthHelperImpl implements AuthHelper {
     }
 
     @Override
-    public String buildTokenForUser(LoginRequest loginRequest) {
-        return null;
+    public String buildTokenForUser(UserDto userDto) {
+        JwtBuilder jwtBuilder = new DefaultJwtBuilder();
+
+        Date expirationDate = getExpirationDate();
+        Date issuedAt = new Date();
+        Long userCode = userDto.getUserCode();
+
+        jwtBuilder
+                .setExpiration(expirationDate)
+                .setIssuedAt(issuedAt)
+                .setSubject(String.valueOf(userCode))
+                .signWith(SignatureAlgorithm.HS512, secret.getBytes(StandardCharsets.UTF_8));
+
+        return jwtBuilder.compact();
+    }
+
+    private Date getExpirationDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, validityDuration);
+        return calendar.getTime();
     }
 }
