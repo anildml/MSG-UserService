@@ -2,6 +2,8 @@ package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
 import MSGUserService.models.requests.LoginRequest;
+import MSGUserService.models.requests.SignUpRequest;
+import MSGUserService.models.responses.SignUpResponse;
 import MSGUserService.models.responses.core.AppError;
 import MSGUserService.models.responses.core.BaseResponse;
 import MSGUserService.models.responses.LoginResponse;
@@ -26,6 +28,16 @@ public class UserController {
             String token = userService.loginAndGetToken(loginRequest);
             LoginResponse loginResponse = new LoginResponse(token);
             return responseBuilder.SuccessfulResponse(loginResponse);
+        } catch (Exception e) {
+            return responseBuilder.ErrorResponse(AppError.GENERIC_ERROR);
+        }
+    }
+
+    @PostMapping("/signUp")
+    public ResponseEntity<BaseResponse<SignUpResponse>> signUp(@RequestBody SignUpRequest signUpRequest) {
+        try {
+            userService.signUp(signUpRequest);
+            return responseBuilder.SuccessfulResponse(null);
         } catch (Exception e) {
             return responseBuilder.ErrorResponse(AppError.GENERIC_ERROR);
         }
