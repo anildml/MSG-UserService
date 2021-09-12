@@ -27,4 +27,5 @@ class DtoMapperImpl implements DtoMapper {
     public UserDto convertToUserDto(UserEntity userEntity) {
         return mapper.map(userEntity, UserDto.class);
     }
+
 }
