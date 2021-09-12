@@ -8,4 +8,8 @@ public abstract class SignUpException extends MsgException {
         super(message, cause, errorCode);
     }
 
+    public SignUpException(String message, int errorCode) {
+        super(message, errorCode);
+    }
+
 }
