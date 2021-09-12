@@ -1,6 +1,9 @@
 package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
+import MSGUserService.models.exceptions.MsgException;
+import MSGUserService.models.exceptions.login.LoginException;
+import MSGUserService.models.exceptions.login.PasswordsDoesNotMatchException;
 import MSGUserService.models.requests.LoginRequest;
 import MSGUserService.models.responses.LoginResponse;
 import MSGUserService.models.responses.core.AppError;
@@ -26,8 +29,8 @@ public class LoginController {
             String token = userService.loginAndGetToken(loginRequest);
             LoginResponse loginResponse = new LoginResponse(token);
             return responseBuilder.SuccessfulResponse(loginResponse);
-        } catch (Exception e) {
-            return responseBuilder.ErrorResponse(AppError.GENERIC_ERROR);
+        } catch (LoginException e) {
+            return responseBuilder.ErrorResponse(e);
         }
     }
 

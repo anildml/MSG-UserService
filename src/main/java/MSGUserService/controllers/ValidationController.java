@@ -1,6 +1,7 @@
 package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
+import MSGUserService.models.exceptions.validation.ValidationException;
 import MSGUserService.models.requests.LoginRequest;
 import MSGUserService.models.requests.SignUpRequest;
 import MSGUserService.models.responses.LoginResponse;
@@ -28,8 +29,8 @@ public class ValidationController {
             String token = userService.loginAndGetToken(loginRequest);
             LoginResponse loginResponse = new LoginResponse(token);
             return responseBuilder.SuccessfulResponse(loginResponse);
-        } catch (Exception e) {
-            return responseBuilder.ErrorResponse(AppError.GENERIC_ERROR);
+        } catch (ValidationException e) {
+            return responseBuilder.ErrorResponse(e);
         }
     }
 
