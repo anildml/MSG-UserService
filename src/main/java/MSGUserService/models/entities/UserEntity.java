@@ -16,20 +16,20 @@ import javax.persistence.*;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
     @Column(name = "username")
     private String username;
 
+    @Column(name = "password_digest")
+    private String passwordDigest;
+
     @Column(name = "user_code")
     private long userCode;
 
     @Column(name = "email")
     private String email;
-
-    @Column(name = "password_digest")
-    private String passwordDigest;
 
 }

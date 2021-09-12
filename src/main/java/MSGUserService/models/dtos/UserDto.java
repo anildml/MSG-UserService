@@ -15,10 +15,10 @@ public class UserDto {
 
     private String username;
 
+    private String passwordDigest;
+
     private long userCode;
 
     private String email;
-
-    private String passwordDigest;
 
 }
