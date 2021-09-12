@@ -8,7 +8,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultJwtBuilder;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -49,7 +48,7 @@ class AuthHelperImpl implements AuthHelper {
                 .setExpiration(expirationDate)
                 .setIssuedAt(issuedAt)
                 .setSubject(String.valueOf(userCode))
-                .signWith(SignatureAlgorithm.HS512, secret.getBytes(StandardCharsets.UTF_8));
+                .signWith(SignatureAlgorithm.HS512, secret);
 
         return jwtBuilder.compact();
     }
