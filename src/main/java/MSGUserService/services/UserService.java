@@ -7,6 +7,7 @@ import MSGUserService.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
 import MSGUserService.models.requests.LoginRequest;
+import MSGUserService.models.requests.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public interface UserService {
 
     String loginAndGetToken(LoginRequest loginRequest);
 
-    Boolean signUp(UserDto userDto);
+    Boolean signUp(SignUpRequest signUpRequest);
 
 }
 
@@ -44,7 +45,17 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean signUp(UserDto userDto) {
+    public Boolean signUp(SignUpRequest signUpRequest) {
+        UserDto userDto = new UserDto();
+
+        String passwordDigest = passwordHandler.hashNewPassword(signUpRequest.getPassword());
+        long userCode = 1234;
+
+        userDto.setUsername(signUpRequest.getUsername());
+        userDto.setPasswordDigest(passwordDigest);
+        userDto.setUserCode(userCode);
+        userDto.setEmail(signUpRequest.getEmail());
+
         UserEntity userEntity = dtoMapper.convertToEntity(userDto);
         try {
             userDao.save(userEntity);
