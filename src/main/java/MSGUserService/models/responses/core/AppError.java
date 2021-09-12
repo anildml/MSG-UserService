@@ -1,15 +1,19 @@
 package MSGUserService.models.responses.core;
 
+import MSGUserService.models.exceptions.MsgException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum AppError {
+public class AppError {
 
-    GENERIC_ERROR(0, "");
+    private final int errorCode;
+    private final String errorMessage;
 
-    private final int id;
-    private final String error;
+    public AppError(MsgException msgException) {
+        this.errorCode = msgException.getErrorCode();
+        this.errorMessage = msgException.getMessage();
+    }
 
 }
