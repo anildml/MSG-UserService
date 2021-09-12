@@ -2,19 +2,17 @@ package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
 import MSGUserService.models.requests.LoginRequest;
-import MSGUserService.models.requests.SignUpRequest;
-import MSGUserService.models.responses.SignUpResponse;
+import MSGUserService.models.responses.LoginResponse;
 import MSGUserService.models.responses.core.AppError;
 import MSGUserService.models.responses.core.BaseResponse;
-import MSGUserService.models.responses.LoginResponse;
 import MSGUserService.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/login")
+public class LoginController {
 
     @Autowired
     private UserService userService;
@@ -22,22 +20,12 @@ public class UserController {
     @Autowired
     private ResponseBuilder responseBuilder;
 
-    @GetMapping("/login")
+    @GetMapping()
     public ResponseEntity<BaseResponse<LoginResponse>> login(@RequestBody LoginRequest loginRequest) {
         try {
             String token = userService.loginAndGetToken(loginRequest);
             LoginResponse loginResponse = new LoginResponse(token);
             return responseBuilder.SuccessfulResponse(loginResponse);
-        } catch (Exception e) {
-            return responseBuilder.ErrorResponse(AppError.GENERIC_ERROR);
-        }
-    }
-
-    @PostMapping("/signUp")
-    public ResponseEntity<BaseResponse<SignUpResponse>> signUp(@RequestBody SignUpRequest signUpRequest) {
-        try {
-            userService.signUp(signUpRequest);
-            return responseBuilder.SuccessfulResponse(null);
         } catch (Exception e) {
             return responseBuilder.ErrorResponse(AppError.GENERIC_ERROR);
         }
