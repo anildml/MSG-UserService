@@ -6,6 +6,9 @@ import MSGUserService.helpers.DtoMapper;
 import MSGUserService.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
+import MSGUserService.models.exceptions.login.LoginException;
+import MSGUserService.models.exceptions.login.PasswordsDoesNotMatchException;
+import MSGUserService.models.exceptions.login.UserNotFoundException;
 import MSGUserService.models.requests.LoginRequest;
 import MSGUserService.models.requests.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +16,9 @@ import org.springframework.stereotype.Service;
 
 public interface UserService {
 
-    String loginAndGetToken(LoginRequest loginRequest);
+    String loginAndGetToken(LoginRequest loginRequest) throws LoginException;
 
-    Boolean signUp(SignUpRequest signUpRequest);
+    Boolean signUp(SignUpRequest signUpRequest) throws LoginException;
 
 }
 
@@ -37,11 +40,23 @@ class UserServiceImpl implements UserService {
 
     @Override
     public String loginAndGetToken(LoginRequest loginRequest) {
-        UserDto userDto = dtoMapper.convertToUserDto(userDao.findUserEntityByUsername(loginRequest.getUsername()));
-        if (passwordHandler.doesPasswordsMatch(userDto.getPasswordDigest(), loginRequest.getPassword())) {
+        UserEntity userEntity = null;
+        try {
+            userEntity = userDao.findUserEntityByUsername(loginRequest.getUsername());
+        } catch (Exception e) {
+            // DATABASE ACCESS PROBLEM
+            // THROW GENERIC ERROR
+        }
+        if (userEntity == null) {
+            throw new UserNotFoundException();
+        }
+        UserDto userDto = dtoMapper.convertToUserDto(userEntity);
+        boolean isPasswordsMatch =
+                passwordHandler.doesPasswordsMatch(userDto.getPasswordDigest(), loginRequest.getPassword());
+        if (isPasswordsMatch) {
             return authHelper.buildTokenForUser(userDto);
         }
-        return null;
+        throw new PasswordsDoesNotMatchException();
     }
 
     @Override
