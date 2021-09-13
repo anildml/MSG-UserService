@@ -10,14 +10,14 @@ public abstract class MsgError extends RuntimeException {
     DEFINE ERROR CODES AND ERROR MESSAGES AND REASONS HERE
      */
 
-    private final int errorCode;
+    private final String errorCode;
 
-    public MsgError(String message, Throwable cause, int errorCode) {
+    public MsgError(String message, Throwable cause, String errorCode) {
         super(message, cause);
         this.errorCode = errorCode;
     }
 
-    public MsgError(String message, int errorCode) {
+    public MsgError(String message, String errorCode) {
         super(message);
         this.errorCode = errorCode;
     }
