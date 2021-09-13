@@ -1,7 +1,7 @@
 package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
-import MSGUserService.models.exceptions.login.LoginException;
+import MSGUserService.models.errors.login.LoginException;
 import MSGUserService.models.requests.LoginRequest;
 import MSGUserService.models.responses.LoginResponse;
 import MSGUserService.models.responses.core.BaseResponse;

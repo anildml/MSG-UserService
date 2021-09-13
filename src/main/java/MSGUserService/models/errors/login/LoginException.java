@@ -1,6 +1,6 @@
-package MSGUserService.models.exceptions.login;
+package MSGUserService.models.errors.login;
 
-import MSGUserService.models.exceptions.MsgException;
+import MSGUserService.models.errors.MsgException;
 
 public abstract class LoginException extends MsgException {
 

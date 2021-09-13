@@ -1,6 +1,6 @@
 package MSGUserService.models.responses.core;
 
-import MSGUserService.models.exceptions.MsgException;
+import MSGUserService.models.errors.MsgException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

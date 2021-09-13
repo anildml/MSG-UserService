@@ -1,7 +1,7 @@
 package MSGUserService.services;
 
 import MSGUserService.helpers.AuthHelper;
-import MSGUserService.models.exceptions.validation.ValidationException;
+import MSGUserService.models.errors.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

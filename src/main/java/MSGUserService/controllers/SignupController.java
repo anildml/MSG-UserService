@@ -1,7 +1,7 @@
 package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
-import MSGUserService.models.exceptions.signup.SignUpException;
+import MSGUserService.models.errors.signup.SignUpException;
 import MSGUserService.models.requests.SignUpRequest;
 import MSGUserService.models.responses.SignUpResponse;
 import MSGUserService.models.responses.core.BaseResponse;

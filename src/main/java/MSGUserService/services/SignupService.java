@@ -5,7 +5,7 @@ import MSGUserService.helpers.DtoMapper;
 import MSGUserService.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
-import MSGUserService.models.exceptions.signup.SignUpException;
+import MSGUserService.models.errors.signup.SignUpException;
 import MSGUserService.models.requests.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

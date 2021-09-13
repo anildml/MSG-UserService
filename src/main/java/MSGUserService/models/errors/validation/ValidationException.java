@@ -1,6 +1,6 @@
-package MSGUserService.models.exceptions.validation;
+package MSGUserService.models.errors.validation;
 
-import MSGUserService.models.exceptions.MsgException;
+import MSGUserService.models.errors.MsgException;
 
 public class ValidationException extends MsgException {
 

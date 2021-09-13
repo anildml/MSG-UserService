@@ -1,6 +1,6 @@
 package MSGUserService.helpers;
 
-import MSGUserService.models.exceptions.MsgException;
+import MSGUserService.models.errors.MsgException;
 import MSGUserService.models.responses.core.AppError;
 import MSGUserService.models.responses.core.BaseResponse;
 import org.springframework.http.HttpStatus;

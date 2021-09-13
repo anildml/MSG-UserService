@@ -1,4 +1,4 @@
-package MSGUserService.models.exceptions;
+package MSGUserService.models.errors;
 
 import lombok.Getter;
 

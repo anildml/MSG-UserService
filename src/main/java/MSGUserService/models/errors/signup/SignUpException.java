@@ -1,6 +1,6 @@
-package MSGUserService.models.exceptions.signup;
+package MSGUserService.models.errors.signup;
 
-import MSGUserService.models.exceptions.MsgException;
+import MSGUserService.models.errors.MsgException;
 
 public abstract class SignUpException extends MsgException {
 

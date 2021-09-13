@@ -1,4 +1,4 @@
-package MSGUserService.models.exceptions.login;
+package MSGUserService.models.errors.login;
 
 public class PasswordsDoesNotMatchException extends LoginException {
 
