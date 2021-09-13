@@ -13,7 +13,7 @@ import java.util.Date;
 
 public interface AuthHelper {
 
-    String getUsernameFromToken(String token);
+    Long getUserCodeFromToken(String token);
 
     String buildTokenForUser(UserDto userDto);
 
@@ -26,10 +26,9 @@ class AuthHelperImpl implements AuthHelper {
 
     private final int validityDuration = 3; // 3 minutes
 
-    @Override
-    public String getUsernameFromToken(String token) {
+    public Long getUserCodeFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return claims.getSubject();
+        return Long.parseLong(claims.getSubject());
     }
 
     private Claims getAllClaimsFromToken(String token) {
