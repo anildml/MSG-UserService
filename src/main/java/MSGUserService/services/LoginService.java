@@ -50,10 +50,10 @@ class LoginServiceImpl implements LoginService {
         UserDto userDto = dtoMapper.convertToUserDto(userEntity);
         boolean isPasswordsMatch =
                 passwordHandler.doesPasswordsMatch(userDto.getPasswordDigest(), loginRequest.getPassword());
-        if (isPasswordsMatch) {
-            return authHelper.buildTokenForUser(userDto);
+        if (!isPasswordsMatch) {
+            throw new InvalidPasswordError();
         }
-        throw new InvalidPasswordError();
+        return authHelper.buildTokenForUser(userDto);
     }
 
 }
