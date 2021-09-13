@@ -2,13 +2,10 @@ package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
 import MSGUserService.models.exceptions.validation.ValidationException;
-import MSGUserService.models.requests.LoginRequest;
-import MSGUserService.models.requests.SignUpRequest;
-import MSGUserService.models.responses.LoginResponse;
-import MSGUserService.models.responses.SignUpResponse;
-import MSGUserService.models.responses.core.AppError;
+import MSGUserService.models.requests.ValidationRequest;
+import MSGUserService.models.responses.ValidationResponse;
 import MSGUserService.models.responses.core.BaseResponse;
-import MSGUserService.services.UserService;
+import MSGUserService.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +15,17 @@ import org.springframework.web.bind.annotation.*;
 public class ValidationController {
 
     @Autowired
-    private UserService userService;
+    private ValidationService validationService;
 
     @Autowired
     private ResponseBuilder responseBuilder;
 
-    @GetMapping("/login")
-    public ResponseEntity<BaseResponse<LoginResponse>> login(@RequestBody LoginRequest loginRequest) {
+    @GetMapping("/validate")
+    public ResponseEntity<BaseResponse<ValidationResponse>> login(@RequestBody ValidationRequest validationRequest) {
         try {
-            String token = userService.loginAndGetToken(loginRequest);
-            LoginResponse loginResponse = new LoginResponse(token);
-            return responseBuilder.SuccessfulResponse(loginResponse);
+            Boolean isValid = validationService.validate(validationRequest.getUserCode(), validationRequest.getToken());
+            ValidationResponse validationResponse = new ValidationResponse(isValid);
+            return responseBuilder.SuccessfulResponse(validationResponse);
         } catch (ValidationException e) {
             return responseBuilder.ErrorResponse(e);
         }
