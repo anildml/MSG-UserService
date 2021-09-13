@@ -9,6 +9,7 @@ import MSGUserService.models.entities.UserEntity;
 import MSGUserService.models.exceptions.login.LoginException;
 import MSGUserService.models.exceptions.login.PasswordsDoesNotMatchException;
 import MSGUserService.models.exceptions.login.UserNotFoundException;
+import MSGUserService.models.exceptions.validation.ValidationException;
 import MSGUserService.models.requests.LoginRequest;
 import MSGUserService.models.requests.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,7 @@ import org.springframework.stereotype.Service;
 
 public interface ValidationService {
 
-    String loginAndGetToken(LoginRequest loginRequest) throws LoginException;
-
-    Boolean signUp(SignUpRequest signUpRequest) throws LoginException;
+    Boolean validate(Long userCode, String token) throws ValidationException;
 
 }
 
@@ -38,7 +37,6 @@ class ValidationServiceImpl implements ValidationService {
     private DtoMapper dtoMapper;
 
 
-    @Override
     public String loginAndGetToken(LoginRequest loginRequest) {
         UserEntity userEntity = null;
         try {
@@ -60,24 +58,8 @@ class ValidationServiceImpl implements ValidationService {
     }
 
     @Override
-    public Boolean signUp(SignUpRequest signUpRequest) {
-        UserDto userDto = new UserDto();
-
-        String passwordDigest = passwordHandler.hashNewPassword(signUpRequest.getPassword());
-        long userCode = 1234;
-
-        userDto.setUsername(signUpRequest.getUsername());
-        userDto.setPasswordDigest(passwordDigest);
-        userDto.setUserCode(userCode);
-        userDto.setEmail(signUpRequest.getEmail());
-
-        UserEntity userEntity = dtoMapper.convertToEntity(userDto);
-        try {
-            userDao.save(userEntity);
-        } catch (Exception e) {
-            return Boolean.FALSE;
-        }
-        return Boolean.TRUE;
+    public Boolean validate(Long userCode, String token) throws ValidationException {
+        authHelper.getUserCodeFromToken(token);
+        return Boolean.FALSE;
     }
-
 }
