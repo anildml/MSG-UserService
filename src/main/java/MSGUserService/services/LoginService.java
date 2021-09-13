@@ -10,7 +10,6 @@ import MSGUserService.models.exceptions.login.LoginException;
 import MSGUserService.models.exceptions.login.PasswordsDoesNotMatchException;
 import MSGUserService.models.exceptions.login.UserNotFoundException;
 import MSGUserService.models.requests.LoginRequest;
-import MSGUserService.models.requests.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
