@@ -1,4 +1,4 @@
-package MSGUserService.models.responses;
+package MSGUserService.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpResponse {
+public class ValidationRequest {
 
-    private Boolean successful;
+    private Long userCode;
+
+    private String token;
 
 }

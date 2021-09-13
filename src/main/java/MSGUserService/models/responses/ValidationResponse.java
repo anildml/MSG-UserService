@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpResponse {
+public class ValidationResponse {
 
-    private Boolean successful;
+    private Boolean isValid;
 
 }
