@@ -31,6 +31,9 @@ class SignupServiceImpl implements SignupService {
 
     @Override
     public Boolean signUp(SignUpRequest signUpRequest) {
+
+        checkSignUpRequestValidity(signUpRequest);
+
         UserDto userDto = new UserDto();
 
         String passwordDigest = passwordHandler.hashNewPassword(signUpRequest.getPassword());
@@ -48,6 +51,10 @@ class SignupServiceImpl implements SignupService {
             return Boolean.FALSE;
         }
         return Boolean.TRUE;
+    }
+
+    private void checkSignUpRequestValidity(SignUpRequest signUpRequest) {
+
     }
 
 }
