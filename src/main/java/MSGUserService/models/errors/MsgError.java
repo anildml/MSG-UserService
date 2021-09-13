@@ -16,8 +16,7 @@ public abstract class MsgError extends RuntimeException {
      *      1-2     Invalid Username
      *
      *  VALIDATION ERRORS
-     *      2-0     Invalid User Code
-     *      2-1     Token Not Valid
+     *      2-0     Token Not Valid
      */
 
     private final String errorCode;
