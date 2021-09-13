@@ -1,7 +1,7 @@
 package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
-import MSGUserService.models.errors.validation.ValidationException;
+import MSGUserService.models.errors.validation.ValidationError;
 import MSGUserService.models.requests.ValidationRequest;
 import MSGUserService.models.responses.ValidationResponse;
 import MSGUserService.models.responses.core.BaseResponse;
@@ -26,7 +26,7 @@ public class ValidationController {
             Boolean isValid = validationService.validate(validationRequest.getUserCode(), validationRequest.getToken());
             ValidationResponse validationResponse = new ValidationResponse(isValid);
             return responseBuilder.SuccessfulResponse(validationResponse);
-        } catch (ValidationException e) {
+        } catch (ValidationError e) {
             return responseBuilder.ErrorResponse(e);
         }
     }

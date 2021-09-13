@@ -1,7 +1,7 @@
 package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
-import MSGUserService.models.errors.login.LoginException;
+import MSGUserService.models.errors.login.LoginError;
 import MSGUserService.models.requests.LoginRequest;
 import MSGUserService.models.responses.LoginResponse;
 import MSGUserService.models.responses.core.BaseResponse;
@@ -26,7 +26,7 @@ public class LoginController {
             String token = loginService.loginAndGetToken(loginRequest);
             LoginResponse loginResponse = new LoginResponse(token);
             return responseBuilder.SuccessfulResponse(loginResponse);
-        } catch (LoginException e) {
+        } catch (LoginError e) {
             return responseBuilder.ErrorResponse(e);
         }
     }

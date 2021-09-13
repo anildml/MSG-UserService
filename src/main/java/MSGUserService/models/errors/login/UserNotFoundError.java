@@ -1,11 +1,11 @@
 package MSGUserService.models.errors.login;
 
-public class UserNotFoundException extends LoginException {
+public class UserNotFoundError extends LoginError {
 
     private static final int errorCode = 0;
     private static final String errorMessage = "User Not Found!";
 
-    public UserNotFoundException() {
+    public UserNotFoundError() {
         super(errorMessage, errorCode);
     }
 

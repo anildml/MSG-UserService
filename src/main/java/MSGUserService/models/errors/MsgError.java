@@ -3,7 +3,7 @@ package MSGUserService.models.errors;
 import lombok.Getter;
 
 @Getter
-public abstract class MsgException extends RuntimeException {
+public abstract class MsgError extends RuntimeException {
 
     /*
     MOVE AppError DEFINITIONS HERE
@@ -12,12 +12,12 @@ public abstract class MsgException extends RuntimeException {
 
     private final int errorCode;
 
-    public MsgException(String message, Throwable cause, int errorCode) {
+    public MsgError(String message, Throwable cause, int errorCode) {
         super(message, cause);
         this.errorCode = errorCode;
     }
 
-    public MsgException(String message, int errorCode) {
+    public MsgError(String message, int errorCode) {
         super(message);
         this.errorCode = errorCode;
     }

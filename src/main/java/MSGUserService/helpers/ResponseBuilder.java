@@ -1,6 +1,6 @@
 package MSGUserService.helpers;
 
-import MSGUserService.models.errors.MsgException;
+import MSGUserService.models.errors.MsgError;
 import MSGUserService.models.responses.core.AppError;
 import MSGUserService.models.responses.core.BaseResponse;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,7 @@ public interface ResponseBuilder {
 
     <T> ResponseEntity<BaseResponse<T>> SuccessfulResponse(T data);
 
-    <T> ResponseEntity<BaseResponse<T>> ErrorResponse(MsgException msgException);
+    <T> ResponseEntity<BaseResponse<T>> ErrorResponse(MsgError msgError);
 
 }
 
@@ -22,8 +22,8 @@ class ResponseBuilderImpl implements ResponseBuilder {
         return new ResponseEntity<>(new BaseResponse<>(true, null, data), HttpStatus.OK);
     }
 
-    public <T> ResponseEntity<BaseResponse<T>> ErrorResponse(MsgException msgException) {
-        AppError error = new AppError(msgException);
+    public <T> ResponseEntity<BaseResponse<T>> ErrorResponse(MsgError msgError) {
+        AppError error = new AppError(msgError);
         return new ResponseEntity<>(new BaseResponse<>(false, error, null), HttpStatus.BAD_REQUEST);
     }
 

@@ -1,13 +1,13 @@
 package MSGUserService.services;
 
 import MSGUserService.helpers.AuthHelper;
-import MSGUserService.models.errors.validation.ValidationException;
+import MSGUserService.models.errors.validation.ValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 public interface ValidationService {
 
-    Boolean validate(Long userCode, String token) throws ValidationException;
+    Boolean validate(Long userCode, String token) throws ValidationError;
 
 }
 
@@ -19,7 +19,7 @@ class ValidationServiceImpl implements ValidationService {
 
 
     @Override
-    public Boolean validate(Long userCode, String token) throws ValidationException {
+    public Boolean validate(Long userCode, String token) throws ValidationError {
         return authHelper.isTokenValid(userCode, token);
     }
 

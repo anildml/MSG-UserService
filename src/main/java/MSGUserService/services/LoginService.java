@@ -6,16 +6,16 @@ import MSGUserService.helpers.DtoMapper;
 import MSGUserService.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
-import MSGUserService.models.errors.login.LoginException;
-import MSGUserService.models.errors.login.PasswordsDoesNotMatchException;
-import MSGUserService.models.errors.login.UserNotFoundException;
+import MSGUserService.models.errors.login.LoginError;
+import MSGUserService.models.errors.login.PasswordsDoesNotMatchError;
+import MSGUserService.models.errors.login.UserNotFoundError;
 import MSGUserService.models.requests.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 public interface LoginService {
 
-    String loginAndGetToken(LoginRequest loginRequest) throws LoginException;
+    String loginAndGetToken(LoginRequest loginRequest) throws LoginError;
 
 }
 
@@ -45,7 +45,7 @@ class LoginServiceImpl implements LoginService {
             // THROW GENERIC ERROR
         }
         if (userEntity == null) {
-            throw new UserNotFoundException();
+            throw new UserNotFoundError();
         }
         UserDto userDto = dtoMapper.convertToUserDto(userEntity);
         boolean isPasswordsMatch =
@@ -53,7 +53,7 @@ class LoginServiceImpl implements LoginService {
         if (isPasswordsMatch) {
             return authHelper.buildTokenForUser(userDto);
         }
-        throw new PasswordsDoesNotMatchException();
+        throw new PasswordsDoesNotMatchError();
     }
 
 }

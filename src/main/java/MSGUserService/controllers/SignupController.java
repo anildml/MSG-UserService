@@ -1,7 +1,7 @@
 package MSGUserService.controllers;
 
 import MSGUserService.helpers.ResponseBuilder;
-import MSGUserService.models.errors.signup.SignUpException;
+import MSGUserService.models.errors.signup.SignUpError;
 import MSGUserService.models.requests.SignUpRequest;
 import MSGUserService.models.responses.SignUpResponse;
 import MSGUserService.models.responses.core.BaseResponse;
@@ -26,7 +26,7 @@ public class SignupController {
             Boolean successful = signupService.signUp(signUpRequest);
             SignUpResponse signUpResponse = new SignUpResponse(successful);
             return responseBuilder.SuccessfulResponse(signUpResponse);
-        } catch (SignUpException e) {
+        } catch (SignUpError e) {
             return responseBuilder.ErrorResponse(e);
         }
     }

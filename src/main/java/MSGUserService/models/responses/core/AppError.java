@@ -1,6 +1,6 @@
 package MSGUserService.models.responses.core;
 
-import MSGUserService.models.errors.MsgException;
+import MSGUserService.models.errors.MsgError;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,9 +11,9 @@ public class AppError {
     private final int errorCode;
     private final String errorMessage;
 
-    public AppError(MsgException msgException) {
-        this.errorCode = msgException.getErrorCode();
-        this.errorMessage = msgException.getMessage();
+    public AppError(MsgError msgError) {
+        this.errorCode = msgError.getErrorCode();
+        this.errorMessage = msgError.getMessage();
     }
 
 }
