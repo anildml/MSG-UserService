@@ -13,4 +13,6 @@ public class ValidationResponse {
 
     private Boolean isValid;
 
+    private String token;
+
 }
