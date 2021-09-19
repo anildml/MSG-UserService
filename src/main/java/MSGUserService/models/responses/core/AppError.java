@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class AppError {
 
-    private final int errorCode;
+    private final String errorCode;
     private final String errorMessage;
 
     public AppError(MsgError msgError) {
