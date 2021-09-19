@@ -23,8 +23,8 @@ public class ValidationController {
     @GetMapping("/validate")
     public ResponseEntity<BaseResponse<ValidationResponse>> login(@RequestBody ValidationRequest validationRequest) {
         try {
-            Boolean isValid = validationService.validate(validationRequest.getUserCode(), validationRequest.getToken());
-            ValidationResponse validationResponse = new ValidationResponse(isValid);
+            String renewedToken = validationService.validateAndCreateNewToken(validationRequest.getUserCode(), validationRequest.getToken());
+            ValidationResponse validationResponse = new ValidationResponse(true, renewedToken);
             return responseBuilder.SuccessfulResponse(validationResponse);
         } catch (ValidationError e) {
             return responseBuilder.ErrorResponse(e);
