@@ -16,3 +16,5 @@ WORKDIR /opt/app
 COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/
 
 ENTRYPOINT ["java","-jar","msg-user-service.jar"]
+
+EXPOSE 62461
