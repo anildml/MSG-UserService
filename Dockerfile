@@ -1,5 +1,5 @@
 # AS <NAME> to name this stage as maven
-FROM maven AS maven
+FROM maven:3.6.3 AS maven
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app
@@ -7,7 +7,7 @@ COPY . /usr/src/app
 RUN mvn package -DskipTests
 
 # For Java 11,
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM openjdk:11.0.13:alpine-jre
 
 ARG JAR_FILE=msg-user-service.jar
 
