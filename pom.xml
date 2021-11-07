@@ -106,6 +106,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>msg-user-service</finalName>
 
 		<plugins>
 			<plugin>
