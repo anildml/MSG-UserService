@@ -7,7 +7,7 @@ COPY . /usr/src/app
 RUN mvn package -DskipTests
 
 # For Java 11,
-FROM openjdk:11.0.13:alpine-jre
+FROM adoptopenjdk/openjdk15:jdk-15.0.2_7-alpine
 
 ARG JAR_FILE=msg-user-service.jar
 
