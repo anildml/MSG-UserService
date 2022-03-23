@@ -9,14 +9,10 @@ import MSGUserService.models.errors.validation.ValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-public interface ValidationService {
-
-    String validateAndCreateNewToken(Long userCode, String token) throws ValidationError;
-
-}
+import java.math.BigDecimal;
 
 @Service
-class ValidationServiceImpl implements ValidationService {
+public class ValidationService {
 
     @Autowired
     private AuthHelper authHelper;
@@ -27,9 +23,7 @@ class ValidationServiceImpl implements ValidationService {
     @Autowired
     private DtoMapper dtoMapper;
 
-
-    @Override
-    public String validateAndCreateNewToken(Long userCode, String token) throws ValidationError {
+    public String validateAndCreateNewToken(BigDecimal userCode, String token) throws ValidationError {
         Boolean isTokenValid = authHelper.isTokenValid(userCode, token);
         if (!isTokenValid) {
             throw new TokenNotValidError();

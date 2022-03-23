@@ -8,28 +8,20 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultJwtBuilder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
-public interface AuthHelper {
-
-    Boolean isTokenValid(Long userCode, String token);
-
-    String buildTokenForUser(UserDto userDto);
-
-}
-
 @Service
-class AuthHelperImpl implements AuthHelper {
+public class AuthHelper {
 
     private final String secret = "test";
 
     private final int validityDuration = 3; // 3 minutes
 
-    @Override
-    public Boolean isTokenValid(Long userCode, String token) {
+    public Boolean isTokenValid(BigDecimal userCode, String token) {
         Long userCodeFromToken = getUserCodeFromToken(token);
-        if (!userCodeFromToken.equals(userCode)) {
+        if (!userCodeFromToken.equals(userCode.longValue())) {
             return Boolean.FALSE;
         }
         Boolean isTokenExpired = (new Date()).after(getExpirationDateFromToken(token));
@@ -39,7 +31,6 @@ class AuthHelperImpl implements AuthHelper {
         return Boolean.TRUE;
     }
 
-    @Override
     public String buildTokenForUser(UserDto userDto) {
         JwtBuilder jwtBuilder = new DefaultJwtBuilder();
 
