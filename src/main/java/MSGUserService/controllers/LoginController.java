@@ -1,6 +1,6 @@
 package MSGUserService.controllers;
 
-import MSGUserService.helpers.ResponseBuilder;
+import MSGUserService.core.ResponseBuilder;
 import MSGUserService.models.errors.login.LoginError;
 import MSGUserService.models.requests.LoginRequest;
 import MSGUserService.models.responses.LoginResponse;

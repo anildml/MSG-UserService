@@ -1,4 +1,4 @@
-package MSGUserService.helpers;
+package MSGUserService.core;
 
 import MSGUserService.models.errors.MsgError;
 import MSGUserService.models.responses.core.AppError;

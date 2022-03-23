@@ -1,6 +1,6 @@
 package MSGUserService.controllers;
 
-import MSGUserService.helpers.ResponseBuilder;
+import MSGUserService.core.ResponseBuilder;
 import MSGUserService.models.errors.validation.ValidationError;
 import MSGUserService.models.requests.ValidationRequest;
 import MSGUserService.models.responses.ValidationResponse;
