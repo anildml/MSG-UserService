@@ -16,7 +16,7 @@ public class LogManager {
     private AppLogger logger;
 
     @Around("" +
-            "execution(* MSGUserService.services..*(..)) || " +
+            "execution(* MSGUserService.services..*.*(..)) || " +
             "execution(* MSGUserService.controllers..*(..)) || " +
             "execution(* MSGUserService.daos..*(..))")
     public Object logRequests(ProceedingJoinPoint joinPoint) throws Throwable {
