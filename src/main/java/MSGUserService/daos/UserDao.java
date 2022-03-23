@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 @Repository
 public interface UserDao extends JpaRepository<UserEntity, Long> {
 
@@ -26,7 +28,7 @@ public interface UserDao extends JpaRepository<UserEntity, Long> {
             "   u.userCode = :userCode" +
             ")")
     UserEntity findUserEntityByUserCode(
-            @Param("userCode") long userCode
+            @Param("userCode") BigDecimal userCode
     );
 
 }
