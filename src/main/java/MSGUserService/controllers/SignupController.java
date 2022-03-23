@@ -5,7 +5,7 @@ import MSGUserService.models.errors.signup.SignUpError;
 import MSGUserService.models.requests.SignUpRequest;
 import MSGUserService.models.responses.SignUpResponse;
 import MSGUserService.models.responses.core.BaseResponse;
-import MSGUserService.services.SignupService;
+import MSGUserService.services.dataServices.SignupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

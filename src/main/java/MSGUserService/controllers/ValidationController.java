@@ -5,7 +5,7 @@ import MSGUserService.models.errors.validation.ValidationError;
 import MSGUserService.models.requests.ValidationRequest;
 import MSGUserService.models.responses.ValidationResponse;
 import MSGUserService.models.responses.core.BaseResponse;
-import MSGUserService.services.ValidationService;
+import MSGUserService.services.dataServices.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

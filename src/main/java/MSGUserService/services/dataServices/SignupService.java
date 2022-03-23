@@ -1,12 +1,11 @@
-package MSGUserService.services;
+package MSGUserService.services.dataServices;
 
 import MSGUserService.daos.UserDao;
-import MSGUserService.helpers.DtoMapper;
 import MSGUserService.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
-import MSGUserService.models.errors.signup.SignUpError;
 import MSGUserService.models.requests.SignUpRequest;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class SignupService {
     private PasswordHandler passwordHandler;
 
     @Autowired
-    private DtoMapper dtoMapper;
+    private ModelMapper mapper;
 
     public Boolean signUp(SignUpRequest signUpRequest) {
 
@@ -38,7 +37,7 @@ public class SignupService {
         userDto.setUserCode(userCode);
         userDto.setEmail(signUpRequest.getEmail());
 
-        UserEntity userEntity = dtoMapper.convertToEntity(userDto);
+        UserEntity userEntity = mapper.map(userDto, UserEntity.class);
         try {
             userDao.save(userEntity);
         } catch (Exception e) {

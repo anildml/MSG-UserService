@@ -1,15 +1,14 @@
-package MSGUserService.services;
+package MSGUserService.services.dataServices;
 
 import MSGUserService.daos.UserDao;
 import MSGUserService.helpers.AuthHelper;
-import MSGUserService.helpers.DtoMapper;
 import MSGUserService.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
-import MSGUserService.models.errors.login.LoginError;
 import MSGUserService.models.errors.login.InvalidPasswordError;
 import MSGUserService.models.errors.login.InvalidUsernameError;
 import MSGUserService.models.requests.LoginRequest;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class LoginService {
     private AuthHelper authHelper;
 
     @Autowired
-    private DtoMapper dtoMapper;
+    private ModelMapper mapper;
 
     public String loginAndGetToken(LoginRequest loginRequest) {
         UserEntity userEntity = null;
@@ -39,7 +38,7 @@ public class LoginService {
         if (userEntity == null) {
             throw new InvalidUsernameError();
         }
-        UserDto userDto = dtoMapper.convertToUserDto(userEntity);
+        UserDto userDto = mapper.map(userEntity, UserDto.class);
         boolean isPasswordsMatch =
                 passwordHandler.doesPasswordsMatch(userDto.getPasswordDigest(), loginRequest.getPassword());
         if (!isPasswordsMatch) {
