@@ -13,14 +13,8 @@ import MSGUserService.models.requests.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-public interface LoginService {
-
-    String loginAndGetToken(LoginRequest loginRequest) throws LoginError;
-
-}
-
 @Service
-class LoginServiceImpl implements LoginService {
+public class LoginService {
 
     @Autowired
     private UserDao userDao;
@@ -34,8 +28,6 @@ class LoginServiceImpl implements LoginService {
     @Autowired
     private DtoMapper dtoMapper;
 
-
-    @Override
     public String loginAndGetToken(LoginRequest loginRequest) {
         UserEntity userEntity = null;
         try {

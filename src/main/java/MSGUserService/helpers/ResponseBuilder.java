@@ -7,16 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-public interface ResponseBuilder {
-
-    <T> ResponseEntity<BaseResponse<T>> SuccessfulResponse(T data);
-
-    <T> ResponseEntity<BaseResponse<T>> ErrorResponse(MsgError msgError);
-
-}
-
 @Service
-class ResponseBuilderImpl implements ResponseBuilder {
+public class ResponseBuilder {
 
     public <T> ResponseEntity<BaseResponse<T>> SuccessfulResponse(T data) {
         return new ResponseEntity<>(new BaseResponse<>(true, null, data), HttpStatus.OK);

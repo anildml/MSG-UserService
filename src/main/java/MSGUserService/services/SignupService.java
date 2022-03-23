@@ -10,14 +10,8 @@ import MSGUserService.models.requests.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-public interface SignupService {
-
-    Boolean signUp(SignUpRequest signUpRequest) throws SignUpError;
-
-}
-
 @Service
-class SignupServiceImpl implements SignupService {
+public class SignupService {
 
     @Autowired
     private UserDao userDao;
@@ -28,8 +22,6 @@ class SignupServiceImpl implements SignupService {
     @Autowired
     private DtoMapper dtoMapper;
 
-
-    @Override
     public Boolean signUp(SignUpRequest signUpRequest) {
 
         checkSignUpRequestValidity(signUpRequest);
