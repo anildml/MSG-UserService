@@ -1,7 +1,7 @@
 package MSGUserService.services.dataServices;
 
 import MSGUserService.daos.UserDao;
-import MSGUserService.helpers.AuthHelper;
+import MSGUserService.services.helpers.AuthHelper;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.errors.validation.TokenNotValidError;
 import MSGUserService.models.errors.validation.ValidationError;

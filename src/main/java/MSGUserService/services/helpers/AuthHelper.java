@@ -1,4 +1,4 @@
-package MSGUserService.helpers;
+package MSGUserService.services.helpers;
 
 import MSGUserService.models.dtos.UserDto;
 import io.jsonwebtoken.Claims;
@@ -24,7 +24,7 @@ public class AuthHelper {
         if (!userCodeFromToken.equals(userCode.longValue())) {
             return Boolean.FALSE;
         }
-        Boolean isTokenExpired = (new Date()).after(getExpirationDateFromToken(token));
+        boolean isTokenExpired = (new Date()).after(getExpirationDateFromToken(token));
         if (isTokenExpired) {
             return Boolean.FALSE;
         }

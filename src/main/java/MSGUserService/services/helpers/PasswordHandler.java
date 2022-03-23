@@ -1,4 +1,4 @@
-package MSGUserService.helpers;
+package MSGUserService.services.helpers;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

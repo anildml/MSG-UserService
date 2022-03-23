@@ -1,8 +1,8 @@
 package MSGUserService.services.dataServices;
 
 import MSGUserService.daos.UserDao;
-import MSGUserService.helpers.AuthHelper;
-import MSGUserService.helpers.PasswordHandler;
+import MSGUserService.services.helpers.AuthHelper;
+import MSGUserService.services.helpers.PasswordHandler;
 import MSGUserService.models.dtos.UserDto;
 import MSGUserService.models.entities.UserEntity;
 import MSGUserService.models.errors.login.InvalidPasswordError;
