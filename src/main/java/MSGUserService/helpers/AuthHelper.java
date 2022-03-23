@@ -36,12 +36,12 @@ public class AuthHelper {
 
         Date expirationDate = buildExpirationDate();
         Date issuedAt = new Date();
-        Long userCode = userDto.getUserCode();
+        BigDecimal userCode = userDto.getUserCode();
 
         jwtBuilder
                 .setExpiration(expirationDate)
                 .setIssuedAt(issuedAt)
-                .setSubject(String.valueOf(userCode))
+                .setSubject(userCode.toString())
                 .signWith(SignatureAlgorithm.HS512, secret);
 
         return jwtBuilder.compact();

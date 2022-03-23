@@ -10,6 +10,8 @@ import MSGUserService.models.requests.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class SignupService {
 
@@ -29,7 +31,7 @@ public class SignupService {
         UserDto userDto = new UserDto();
 
         String passwordDigest = passwordHandler.hashNewPassword(signUpRequest.getPassword());
-        long userCode = 1234;
+        BigDecimal userCode = new BigDecimal(1234);
 
         userDto.setUsername(signUpRequest.getUsername());
         userDto.setPasswordDigest(passwordDigest);
