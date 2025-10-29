@@ -39,7 +39,7 @@ public class SignupService {
 
         UserEntity userEntity = mapper.map(userDto, UserEntity.class);
         try {
-            userDao.save(userEntity);
+            userDao.saveAndFlush(userEntity);
         } catch (Exception e) {
             return Boolean.FALSE;
         }
